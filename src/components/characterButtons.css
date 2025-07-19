@@ -1,0 +1,45 @@
+/* src/components/CharacterButtons.css */
+
+/* Character Grid Container */
+.character-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+/* Character Button Styles */
+.character-button {
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #646cff;
+  cursor: pointer;
+  
+  /* Background image styling */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Text styling */
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  
+  /* Center the text */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.character-button:hover {
+  transform: scale(1.05);
+  border-color: #535bf2;
+}
+
+.character-button:active {
+  transform: scale(0.95);
+}

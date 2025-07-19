@@ -1,0 +1,176 @@
+/* src/components/CharacterDetail.css */
+
+.character-detail {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Section */
+.character-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.character-portrait img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid #646cff;
+}
+
+.character-basic-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #646cff;
+}
+
+.weapon-type {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background-color: #535bf2;
+}
+
+/* Stats Section */
+.character-stats {
+  margin-bottom: 40px;
+}
+
+.character-stats h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #646cff;
+}
+
+/* Skills Section */
+.character-skills h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skill-item {
+  background-color: #f9f9f9;
+  border-left: 4px solid #646cff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.skill-item.active {
+  border-left-color: #ff6b6b;
+}
+
+.skill-item.passive {
+  border-left-color: #51cf66;
+}
+
+.skill-item.concerto {
+  border-left-color: #ffd43b;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.skill-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.skill-type {
+  background-color: #646cff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.skill-item.active .skill-type {
+  background-color: #ff6b6b;
+}
+
+.skill-item.passive .skill-type {
+  background-color: #51cf66;
+}
+
+.skill-item.concerto .skill-type {
+  background-color: #ffd43b;
+  color: #333;
+}
+
+.skill-description {
+  margin: 0;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .character-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .character-portrait img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
