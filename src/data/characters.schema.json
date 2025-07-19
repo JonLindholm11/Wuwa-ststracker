@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "weapon": {
+            "type": "string"
+          },
+          "hp": {
+            "type": "number"
+          },
+          "attack": {
+            "type": "number"
+          },
+          "defense": {
+            "type": "number"
+          },
+          "critRate": {
+            "type": "number"
+          },
+          "critDmg": {
+            "type": "number"
+          },
+          "dmgPerSetBonus": {
+            "type": "number"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["active", "passive", "concerto"]
+                }
+              },
+              "required": ["name", "description", "type"]
+            }
+          }
+        },
+        "required": ["id", "name", "weapon", "hp", "attack", "defense", "critRate", "critDmg", "dmgPerSetBonus", "skills"]
+      }
+    }
+  },
+  "required": ["characters"]
+}
