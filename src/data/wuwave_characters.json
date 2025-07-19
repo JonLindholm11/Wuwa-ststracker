@@ -1,0 +1,612 @@
+{
+  "charactersData": [
+    {
+      "id": "aalto",
+      "name": "Aalto",
+      "weapon": "Pistol",
+      "hp": 8820,
+      "attack": 264,
+      "defense": 1068,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 15,
+      "skills": [
+        {
+          "name": "Shift Trick",
+          "description": "Aalto fires 3 shots, each dealing Aero DMG",
+          "type": "active"
+        },
+        {
+          "name": "Mist Avatar",
+          "description": "Summons a Mist Avatar to taunt enemies and generate Mist Drops",
+          "type": "active"
+        },
+        {
+          "name": "Flower in the Mist",
+          "description": "Creates a Gate of Quandary that amplifies attacks passing through",
+          "type": "active"
+        },
+        {
+          "name": "Misty Cover",
+          "description": "Heavy Attack will always critically hit, triggered once every 30 seconds",
+          "type": "passive"
+        },
+        {
+          "name": "Perfect Performance",
+          "description": "The next character gains 23% Aero DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "baizhi",
+      "name": "Baizhi",
+      "weapon": "Rectifier",
+      "hp": 9570,
+      "attack": 232,
+      "defense": 1160,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 12,
+      "skills": [
+        {
+          "name": "Emergency Plan",
+          "description": "Summons Euphonia to heal teammates and deal Glacio DMG",
+          "type": "active"
+        },
+        {
+          "name": "Momentary Union",
+          "description": "Connects with Euphonia to cast a healing field",
+          "type": "active"
+        },
+        {
+          "name": "Rejuvenating Flow",
+          "description": "Euphonia generates a large healing area with continuous recovery",
+          "type": "active"
+        },
+        {
+          "name": "Harmonic Range",
+          "description": "When Euphonia is on field, Baizhi's healing is increased by 25%",
+          "type": "passive"
+        },
+        {
+          "name": "Rejuvenating Flow",
+          "description": "Heals the next character by 19% of Baizhi's ATK per second for 6s",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "calcharo",
+      "name": "Calcharo",
+      "weapon": "Broadblade",
+      "hp": 12182,
+      "attack": 412,
+      "defense": 1103,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 18,
+      "skills": [
+        {
+          "name": "Extermination Order",
+          "description": "Launches forward to deal Electro DMG and enters Deathblade Gear state",
+          "type": "active"
+        },
+        {
+          "name": "Death Messenger",
+          "description": "Performs a series of slashes dealing massive Electro DMG",
+          "type": "active"
+        },
+        {
+          "name": "Phantom Etching",
+          "description": "Unleashes phantom slashes with enhanced mobility",
+          "type": "active"
+        },
+        {
+          "name": "Unforgiven",
+          "description": "When Calcharo deals damage, his ATK is increased by 10% for 15s",
+          "type": "passive"
+        },
+        {
+          "name": "Necessary Means",
+          "description": "The next character gains 38% Heavy Attack DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "chixia",
+      "name": "Chixia",
+      "weapon": "Pistol",
+      "hp": 7780,
+      "attack": 284,
+      "defense": 1020,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 16,
+      "skills": [
+        {
+          "name": "Whizzing Fight Spirit",
+          "description": "Fires bullets that deal Fusion DMG and generate Thermobaric Bullets",
+          "type": "active"
+        },
+        {
+          "name": "Boom Boom",
+          "description": "Channel to rapidly fire Thermobaric Bullets while moving",
+          "type": "active"
+        },
+        {
+          "name": "Blazing Flames",
+          "description": "Grants 60 Thermobaric Bullets and resets skill cooldown",
+          "type": "active"
+        },
+        {
+          "name": "Numbingly Spicy!",
+          "description": "At max stacks, ATK is additionally increased by 30%",
+          "type": "passive"
+        },
+        {
+          "name": "Surprise Attack",
+          "description": "Increases Basic Attack DMG Bonus of all team members by 25% for 15s",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "danjin",
+      "name": "Danjin",
+      "weapon": "Sword",
+      "hp": 9570,
+      "attack": 284,
+      "defense": 1020,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 17,
+      "skills": [
+        {
+          "name": "Incinerating Will",
+          "description": "Costs HP to deal Havoc DMG and restore Resonance Energy",
+          "type": "active"
+        },
+        {
+          "name": "Crimson Fragment",
+          "description": "Performs enhanced attacks while consuming HP",
+          "type": "active"
+        },
+        {
+          "name": "Crimson Bloom",
+          "description": "Enters Blood Burst state with enhanced attack power",
+          "type": "active"
+        },
+        {
+          "name": "Carmine Gleam",
+          "description": "When Danjin's HP is below 60%, her DMG is increased by 50%",
+          "type": "passive"
+        },
+        {
+          "name": "Crimson Erosion",
+          "description": "The next character gains 23% Havoc DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "encore",
+      "name": "Encore",
+      "weapon": "Rectifier",
+      "hp": 10650,
+      "attack": 337,
+      "defense": 1103,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 18,
+      "skills": [
+        {
+          "name": "Flaming Woolies",
+          "description": "Summons Cloudy and Cosmos to deal Fusion DMG",
+          "type": "active"
+        },
+        {
+          "name": "Energetic Welcome",
+          "description": "Cloudy and Cosmos perform coordinated attacks",
+          "type": "active"
+        },
+        {
+          "name": "Cosmos Rampage",
+          "description": "Transforms into Cosmos with enhanced abilities",
+          "type": "active"
+        },
+        {
+          "name": "Thermal Field",
+          "description": "When HP is above 70%, DMG dealt is increased by 10%",
+          "type": "passive"
+        },
+        {
+          "name": "Woolies Can Help!",
+          "description": "Encore pounces at enemies with Cosmos, dealing Fusion DMG",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "jianxin",
+      "name": "Jianxin",
+      "weapon": "Gauntlet",
+      "hp": 13260,
+      "attack": 267,
+      "defense": 1350,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 14,
+      "skills": [
+        {
+          "name": "Chi Counter",
+          "description": "Enter parry stance to counter attacks and deal Aero DMG",
+          "type": "active"
+        },
+        {
+          "name": "Primordial Qi Spiral",
+          "description": "Generate shields and deal continuous Aero DMG",
+          "type": "active"
+        },
+        {
+          "name": "Purification Force Field",
+          "description": "Creates a force field that continuously deals Aero DMG",
+          "type": "active"
+        },
+        {
+          "name": "Reflection",
+          "description": "When Jianxin takes damage, her shield strength is increased",
+          "type": "passive"
+        },
+        {
+          "name": "Converged Flash",
+          "description": "The next character gains 38% Resonance Liberation DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "jiyan",
+      "name": "Jiyan",
+      "weapon": "Broadblade",
+      "hp": 12182,
+      "attack": 412,
+      "defense": 1103,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 20,
+      "skills": [
+        {
+          "name": "Windqueller",
+          "description": "Deals Aero DMG and can consume Resolve for enhanced damage",
+          "type": "active"
+        },
+        {
+          "name": "Tactical Strike",
+          "description": "Perform an aerial strike that generates Resolve",
+          "type": "active"
+        },
+        {
+          "name": "Emerald Storm: Prelude",
+          "description": "Can upgrade to Finale with Resolve, dealing massive Aero DMG",
+          "type": "active"
+        },
+        {
+          "name": "Tempest Taming",
+          "description": "ATK is increased by 10% for 15s after using Tactical Strike",
+          "type": "passive"
+        },
+        {
+          "name": "Discipline",
+          "description": "The next character gains 23% Aero DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "mortefi",
+      "name": "Mortefi",
+      "weapon": "Pistol",
+      "hp": 7780,
+      "attack": 284,
+      "defense": 1020,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 16,
+      "skills": [
+        {
+          "name": "Passionate Variation",
+          "description": "Deals Fusion DMG and enhances next Draconic Hellfire",
+          "type": "active"
+        },
+        {
+          "name": "Fury Fugue",
+          "description": "Launches coordinated attacks when team uses skills",
+          "type": "active"
+        },
+        {
+          "name": "Violent Finale",
+          "description": "Increases ATK of all team members by 20% for 20s",
+          "type": "active"
+        },
+        {
+          "name": "Harmonic Control",
+          "description": "During Liberation, each Marcato hit increases next damage by 1.5%",
+          "type": "passive"
+        },
+        {
+          "name": "Dissonance",
+          "description": "The next character gains 38% Heavy Attack DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "rover_spectro",
+      "name": "Rover (Spectro)",
+      "weapon": "Sword",
+      "hp": 10650,
+      "attack": 337,
+      "defense": 1103,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 17,
+      "skills": [
+        {
+          "name": "Resonating Slashes",
+          "description": "Deals Spectro DMG and can extend combo with Resonating Spin",
+          "type": "active"
+        },
+        {
+          "name": "Resonating Spin",
+          "description": "Pulls enemies and deals continuous Spectro DMG",
+          "type": "active"
+        },
+        {
+          "name": "Echoing Orchestra",
+          "description": "Summons Spectro constructs that attack with coordinated strikes",
+          "type": "active"
+        },
+        {
+          "name": "Spectro Arrangement",
+          "description": "When Rover uses Heavy Attack, all team members' DMG is increased",
+          "type": "passive"
+        },
+        {
+          "name": "Spectral Blessing",
+          "description": "The next character gains 23% Spectro DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "sanhua",
+      "name": "Sanhua",
+      "weapon": "Sword",
+      "hp": 9570,
+      "attack": 284,
+      "defense": 1020,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 16,
+      "skills": [
+        {
+          "name": "Eternal Frost",
+          "description": "Deals Glacio DMG and can trigger enhanced Ice Burst",
+          "type": "active"
+        },
+        {
+          "name": "Ice Creations",
+          "description": "Creates ice formations that deal continuous Glacio DMG",
+          "type": "active"
+        },
+        {
+          "name": "Glacial Gaze",
+          "description": "Freezes time and unleashes multiple ice attacks",
+          "type": "active"
+        },
+        {
+          "name": "Clarity of Mind",
+          "description": "When Sanhua defeats an enemy, her DMG is increased for a duration",
+          "type": "passive"
+        },
+        {
+          "name": "Frostbite",
+          "description": "The next character gains 38% Basic Attack DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "taoqi",
+      "name": "Taoqi",
+      "weapon": "Broadblade",
+      "hp": 12182,
+      "attack": 267,
+      "defense": 1350,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 14,
+      "skills": [
+        {
+          "name": "Fortified Defense",
+          "description": "Enters Rock Steady state reducing damage and enabling counterattacks",
+          "type": "active"
+        },
+        {
+          "name": "Strategic Parry",
+          "description": "Parries attacks and counters with DEF-scaling damage",
+          "type": "active"
+        },
+        {
+          "name": "Unmovable",
+          "description": "Creates a defensive barrier that protects and buffs allies",
+          "type": "active"
+        },
+        {
+          "name": "Steadfast Protection",
+          "description": "When Taoqi is attacked, her DEF is increased for a short duration",
+          "type": "passive"
+        },
+        {
+          "name": "Defense Formation",
+          "description": "The next character gains 38% Resonance Liberation DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "the_shorekeeper",
+      "name": "The Shorekeeper",
+      "weapon": "Rectifier",
+      "hp": 9570,
+      "attack": 232,
+      "defense": 1160,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 15,
+      "skills": [
+        {
+          "name": "Chaos Theory",
+          "description": "Summons butterflies to heal and deal Spectro DMG",
+          "type": "active"
+        },
+        {
+          "name": "Illation",
+          "description": "Creates pulling effects and deals continuous Spectro DMG",
+          "type": "active"
+        },
+        {
+          "name": "End Loop",
+          "description": "Summons Stellarealm providing various buffs and healing",
+          "type": "active"
+        },
+        {
+          "name": "Astral Harmony",
+          "description": "Gain 70% additional Healing Bonus when casting Chaos Theory",
+          "type": "passive"
+        },
+        {
+          "name": "Discernment",
+          "description": "Restores HP for all nearby party members and deals guaranteed crit Spectro DMG",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "verina",
+      "name": "Verina",
+      "weapon": "Rectifier",
+      "hp": 9570,
+      "attack": 232,
+      "defense": 1160,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 15,
+      "skills": [
+        {
+          "name": "Botany Experiment",
+          "description": "Deals Spectro DMG and generates Photosynthesis Energy",
+          "type": "active"
+        },
+        {
+          "name": "Starflower Blooms",
+          "description": "Consumes Photosynthesis Energy to heal and deal enhanced damage",
+          "type": "active"
+        },
+        {
+          "name": "Arboreal Flourish",
+          "description": "Creates healing field and increases team Spectro DMG Bonus",
+          "type": "active"
+        },
+        {
+          "name": "Gift of Nature",
+          "description": "When healing team members with HP less than 50%, healing is increased by 20%",
+          "type": "passive"
+        },
+        {
+          "name": "Blossom",
+          "description": "Recovers HP equal to 19% of Verina's ATK per second for 6s",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "yangyang",
+      "name": "Yangyang",
+      "weapon": "Sword",
+      "hp": 8820,
+      "attack": 264,
+      "defense": 1068,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 15,
+      "skills": [
+        {
+          "name": "Zephyr Domain",
+          "description": "Deals Aero DMG and creates wind effects",
+          "type": "active"
+        },
+        {
+          "name": "Wind Spirals",
+          "description": "Generates wind spirals that pull enemies and deal continuous damage",
+          "type": "active"
+        },
+        {
+          "name": "Wind Realm",
+          "description": "Creates a large wind field that enhances team mobility",
+          "type": "active"
+        },
+        {
+          "name": "Compassion",
+          "description": "When Yangyang heals herself, other team members also receive healing",
+          "type": "passive"
+        },
+        {
+          "name": "Whirlwind Warmth",
+          "description": "Recovers HP for all team members and grants Aero DMG Bonus",
+          "type": "concerto"
+        }
+      ]
+    },
+    {
+      "id": "yinlin",
+      "name": "Yinlin",
+      "weapon": "Rectifier",
+      "hp": 9570,
+      "attack": 337,
+      "defense": 1103,
+      "critRate": 5,
+      "critDmg": 150,
+      "dmgPerSetBonus": 18,
+      "skills": [
+        {
+          "name": "Magnetic Roar",
+          "description": "Summons electromagnetic puppets that deal Electro DMG",
+          "type": "active"
+        },
+        {
+          "name": "Electromagnetic Burst",
+          "description": "Creates electric fields that continuously damage enemies",
+          "type": "active"
+        },
+        {
+          "name": "Lightning Execution",
+          "description": "Unleashes powerful lightning strikes across the battlefield",
+          "type": "active"
+        },
+        {
+          "name": "Conductor",
+          "description": "When Yinlin deals Electro DMG, her attack speed is increased",
+          "type": "passive"
+        },
+        {
+          "name": "Electromagnetic Field",
+          "description": "The next character gains 23% Electro DMG Deepen for 14 seconds",
+          "type": "concerto"
+        }
+      ]
+    }
+  ]
+}
