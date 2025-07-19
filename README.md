@@ -1,12 +1,61 @@
-# React + Vite
+# Wuthering Waves Stat Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for tracking Wuthering Waves character statistics. This app stores data based on user input of stats and skill levels.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Character selection interface
+- Stat tracking and management
+- Skill level monitoring
+- User-friendly interface built with React + Vite
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Clone the repository
+git clone https://github.com/JonLindholm11/Wuwa-ststracker.git
+
+# Navigate to project directory
+cd Wuwa-ststracker
+
+# Install dependencies
+npm install
+```
+
+## Development
+
+```bash
+# Start development server
+npm run dev
+```
+
+## Build
+
+```bash
+# Build for production
+npm run build
+```
+
+## Tech Stack
+
+- **React** - Frontend framework
+- **Vite** - Build tool and development server
+- **ESLint** - Code linting
+
+## Project Structure
+
+```
+src/
+├── data/
+│   └── wuwave_characters.json    # Character data
+├── App.jsx                       # Main application component
+└── main.jsx                      # Application entry point
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
