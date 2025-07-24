@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import './characterStatsForm.css';
 
 const CharacterStatsForm = ({ 
   selectedCharacter = null, 
   currentUser = null, 
   compactMode = false,
-  showCharacterSelector = true 
+  showCharacterSelector = true,
+  onStatsUpdate = null
 }) => {
   const [characterId, setCharacterId] = useState(selectedCharacter?.id || '');
   const [stats, setStats] = useState({
@@ -19,13 +20,13 @@ const CharacterStatsForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
   const [existingStats, setExistingStats] = useState(null);
+  const [isLoadingStats, setIsLoadingStats] = useState(false);
   const [charactersData, setCharactersData] = useState({ charactersData: [] });
 
   // Load characters data
   useEffect(() => {
     const loadCharactersData = async () => {
       try {
-        // In a real app, you might fetch this from an API
         const response = await import('../data/wuwave_characters.json');
         setCharactersData(response.default);
       } catch (error) {
@@ -42,16 +43,14 @@ const CharacterStatsForm = ({
     }
   }, [selectedCharacter]);
 
-  // Load existing stats when character or user changes
-  useEffect(() => {
-    if (characterId && currentUser?.userId) {
-      loadExistingStats();
-    } else {
-      resetForm();
-    }
-  }, [characterId, currentUser?.userId]);
+  // Memoize selected character data
+  const selectedCharacterData = useMemo(() => {
+    if (!characterId || !charactersData?.charactersData) return null;
+    return charactersData.charactersData.find(char => char.id === characterId);
+  }, [characterId, charactersData]);
 
-  const resetForm = () => {
+  // Optimized resetForm function
+  const resetForm = useCallback(() => {
     setStats({
       hp: '',
       attack: '',
@@ -62,43 +61,67 @@ const CharacterStatsForm = ({
     });
     setExistingStats(null);
     setMessage('');
-  };
+  }, []);
 
-  const loadExistingStats = async () => {
+  // Load existing stats from server
+  const loadExistingStats = useCallback(async () => {
     if (!currentUser?.userId || !characterId) return;
 
+    setIsLoadingStats(true);
     try {
+      console.log(`Loading stats for user: ${currentUser.userId}, character: ${characterId}`);
+      
       const response = await fetch(`http://localhost:3001/api/user-stats/${currentUser.userId}/${characterId}`);
+      
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
+          console.log('Stats loaded successfully:', data.stats);
           setStats(data.stats);
           setExistingStats(data.stats);
           setMessage('Loaded existing stats for this character');
         }
-      } else {
+      } else if (response.status === 404) {
+        console.log('No existing stats found (404) - this is normal for new characters');
         resetForm();
         setMessage('No existing stats found - ready for new input');
+      } else {
+        console.error(`API Error: ${response.status} - ${response.statusText}`);
+        resetForm();
+        setMessage(`Error loading stats: ${response.status} ${response.statusText}`);
       }
     } catch (error) {
-      console.error('Error loading stats:', error);
-      setMessage('Error loading existing stats');
+      console.error('Network error loading stats:', error);
+      resetForm();
+      setMessage('Cannot connect to backend. Please check if the server is running on port 3001.');
+    } finally {
+      setIsLoadingStats(false);
     }
-  };
+  }, [currentUser?.userId, characterId, resetForm]);
 
-  const handleCharacterChange = (e) => {
+  // Load existing stats when character or user changes
+  useEffect(() => {
+    if (characterId && currentUser?.userId) {
+      loadExistingStats();
+    } else {
+      resetForm();
+    }
+  }, [characterId, currentUser?.userId, loadExistingStats, resetForm]);
+
+  const handleCharacterChange = useCallback((e) => {
     setCharacterId(e.target.value);
     setMessage('');
-  };
+  }, []);
 
-  const handleStatChange = (statName, value) => {
+  const handleStatChange = useCallback((statName, value) => {
     setStats(prev => ({
       ...prev,
       [statName]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async () => {
+  // FIXED: Added automatic reload after successful save
+  const handleSubmit = useCallback(async () => {
     if (!characterId) {
       setMessage('Please select a character');
       return;
@@ -109,20 +132,15 @@ const CharacterStatsForm = ({
       return;
     }
 
+    if (!selectedCharacterData) {
+      setMessage('Character data not found');
+      return;
+    }
+
     setIsSubmitting(true);
-    setMessage('');
+    setMessage('Saving...');
 
     try {
-      const selectedCharacterData = charactersData.charactersData.find(
-        char => char.id === characterId
-      );
-
-      if (!selectedCharacterData) {
-        setMessage('Character data not found');
-        setIsSubmitting(false);
-        return;
-      }
-
       const payload = {
         userId: currentUser.userId,
         username: currentUser.username,
@@ -131,6 +149,8 @@ const CharacterStatsForm = ({
         stats,
         timestamp: new Date().toISOString()
       };
+
+      console.log('Submitting payload:', payload);
 
       const response = await fetch('http://localhost:3001/api/user-stats', {
         method: 'POST',
@@ -141,22 +161,34 @@ const CharacterStatsForm = ({
       });
 
       const data = await response.json();
+      console.log('Server response:', data);
 
       if (data.success) {
         setMessage('Stats saved successfully!');
-        setExistingStats(stats);
+        
+        // FIXED: Automatically reload stats from server after successful save
+        console.log('Reloading stats from server to verify save...');
+        setTimeout(async () => {
+          await loadExistingStats();
+          
+          // Notify parent component of the update
+          if (onStatsUpdate) {
+            onStatsUpdate(characterId, stats);
+          }
+        }, 500); // Small delay to ensure database is updated
+        
       } else {
-        setMessage(`Error: ${data.message}`);
+        setMessage(`Error saving: ${data.message}`);
       }
     } catch (error) {
       console.error('Error saving stats:', error);
-      setMessage('Error saving stats. Please check if the backend is running.');
+      setMessage('Error saving stats. Please check if the backend is running on port 3001.');
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [characterId, currentUser, selectedCharacterData, stats, loadExistingStats, onStatsUpdate]);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     if (!characterId || !existingStats || !currentUser) {
       setMessage('No stats to delete');
       return;
@@ -177,26 +209,27 @@ const CharacterStatsForm = ({
       if (data.success) {
         setMessage('Stats deleted successfully!');
         resetForm();
+        
+        // Notify parent component of the deletion
+        if (onStatsUpdate) {
+          onStatsUpdate(characterId, null);
+        }
       } else {
         setMessage(`Error: ${data.message}`);
       }
     } catch (error) {
       console.error('Error deleting stats:', error);
-      setMessage('Error deleting stats');
+      setMessage('Error deleting stats. Please check if the backend is running.');
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [characterId, existingStats, currentUser, resetForm, onStatsUpdate]);
 
-  const selectedCharacterData = characterId 
-    ? charactersData.charactersData.find(char => char.id === characterId)
-    : null;
-
-  const getMessageClass = () => {
-    if (message.includes('Error')) return 'status-message status-error';
+  const getMessageClass = useCallback(() => {
+    if (message.includes('Error') || message.includes('Cannot connect')) return 'status-message status-error';
     if (message.includes('successfully')) return 'status-message status-success';
     return 'status-message status-info';
-  };
+  }, [message]);
 
   if (!currentUser) {
     return (
@@ -221,9 +254,10 @@ const CharacterStatsForm = ({
             value={characterId}
             onChange={handleCharacterChange}
             className="character-select"
+            disabled={isLoadingStats}
           >
             <option value="">-- Select a Character --</option>
-            {charactersData.charactersData.map(character => (
+            {charactersData?.charactersData?.map(character => (
               <option key={character.id} value={character.id}>
                 {character.name} ({character.weapon})
               </option>
@@ -256,6 +290,7 @@ const CharacterStatsForm = ({
               <span className="stats-existing-indicator">(Editing Existing)</span> : 
               <span className="stats-new-indicator">(New Entry)</span>
             }
+            {isLoadingStats && <span className="loading-indicator"> Loading...</span>}
           </h3>
           
           <div className="stats-grid">
@@ -268,6 +303,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('hp', e.target.value)}
                 placeholder="Enter HP value"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
 
@@ -280,6 +316,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('attack', e.target.value)}
                 placeholder="Enter Attack value"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
 
@@ -292,6 +329,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('defense', e.target.value)}
                 placeholder="Enter Defense value"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
 
@@ -305,6 +343,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('dmgBonus', e.target.value)}
                 placeholder="Enter Damage Bonus %"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
 
@@ -318,6 +357,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('critRate', e.target.value)}
                 placeholder="Enter Crit Rate %"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
 
@@ -331,6 +371,7 @@ const CharacterStatsForm = ({
                 onChange={(e) => handleStatChange('critDamage', e.target.value)}
                 placeholder="Enter Crit Damage %"
                 className="stat-input"
+                disabled={isLoadingStats}
               />
             </div>
           </div>
@@ -339,7 +380,7 @@ const CharacterStatsForm = ({
           <div className="action-buttons">
             <button
               onClick={handleSubmit}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isLoadingStats}
               className="btn btn-primary"
             >
               {isSubmitting ? 'Saving...' : (existingStats ? 'Update Stats' : 'Save Stats')}
@@ -348,7 +389,7 @@ const CharacterStatsForm = ({
             {existingStats && (
               <button
                 onClick={handleDelete}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isLoadingStats}
                 className="btn btn-danger"
               >
                 Delete Stats
@@ -357,7 +398,7 @@ const CharacterStatsForm = ({
 
             <button
               onClick={loadExistingStats}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isLoadingStats}
               className="btn btn-success"
             >
               Reload Stats

@@ -111,6 +111,48 @@
   color: #495057;
 }
 
+/* User Stats Section - ONLY displays saved stats */
+.character-user-stats {
+  margin-bottom: 40px;
+}
+
+/* No Stats Message */
+.no-user-stats {
+  padding: 20px;
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.no-user-stats p {
+  color: #856404;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Loading State */
+.user-stats-loading {
+  padding: 20px;
+  background: #d1ecf1;
+  border: 1px solid #bee5eb;
+  border-radius: 8px;
+  text-align: center;
+  color: #0c5460;
+  font-style: italic;
+}
+
+/* Stats Management Container - Separate section for the form */
+.stats-management-container {
+  max-width: 1000px;
+  margin: 40px auto 0;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 /* Skills Section */
 .character-skills {
   margin-bottom: 40px;
@@ -199,14 +241,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-bottom: 40px;
-}
-
-/* User Stats Section */
-.character-user-stats {
-  padding: 30px;
-  background: #f8f9fa;
-  border-radius: 12px;
-  border: 1px solid #dee2e6;
 }
 
 /* Responsive Design */
