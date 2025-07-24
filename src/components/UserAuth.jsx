@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './UserAuth.css';
 
-const UserAuth = ({ onUserChange, currentUser }) => {
+const UserAuth = ({ onUserChange }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [formData, setFormData] = useState({
