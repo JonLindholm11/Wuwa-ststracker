@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './UserAuth.css';
+import './userAuth.css';
 
 const UserAuth = ({ onUserChange }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);

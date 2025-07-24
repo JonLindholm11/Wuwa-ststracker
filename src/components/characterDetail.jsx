@@ -1,30 +1,32 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import charactersData from '../data/wuwave_characters.json'
-import CharacterStatsForm from './CharacterStatsForm'
-import './CharacterDetail.css'
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import charactersData from "../data/wuwave_characters.json";
+import CharacterStatsForm from "./characterStatsForm";
+import "./characterDetail.css";
 
 function CharacterDetail({ currentUser }) {
-  const { characterId } = useParams()
-  const [character, setCharacter] = useState(null)
-  const navigate = useNavigate()
+  const { characterId } = useParams();
+  const [character, setCharacter] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Find the character based on the ID from the URL
     const foundCharacter = charactersData.charactersData.find(
-      char => char.id === characterId
-    )
-    setCharacter(foundCharacter)
-  }, [characterId])
+      (char) => char.id === characterId
+    );
+    setCharacter(foundCharacter);
+  }, [characterId]);
 
   // Function to get character image
   const getCharacterImage = () => {
     if (character?.image) {
-      return character.image
+      return character.image;
     }
     // Fallback to placeholder if no image found
-    return `https://via.placeholder.com/120x120/667eea/ffffff?text=${character?.name?.charAt(0) || '?'}`
-  }
+    return `https://via.placeholder.com/120x120/667eea/ffffff?text=${
+      character?.name?.charAt(0) || "?"
+    }`;
+  };
 
   if (!character) {
     return (
@@ -34,27 +36,29 @@ function CharacterDetail({ currentUser }) {
           <p>The character with ID "{characterId}" could not be found.</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="character-detail-container">
       {/* Character Header with Image */}
       <div className="character-header">
-        <img 
-          src={getCharacterImage()} 
+        <img
+          src={getCharacterImage()}
           alt={character.name}
           className="character-image"
           onError={(e) => {
             // Fallback to a placeholder if image doesn't load
-            console.log('Image failed to load:', e.target.src)
-            e.target.src = `https://via.placeholder.com/120x120/667eea/ffffff?text=${character.name.charAt(0)}`
+            console.log("Image failed to load:", e.target.src);
+            e.target.src = `https://via.placeholder.com/120x120/667eea/ffffff?text=${character.name.charAt(
+              0
+            )}`;
           }}
         />
         <div className="character-info">
           <h1 className="character-title">{character.name}</h1>
           <div className="character-weapon-type">{character.weapon}</div>
-          <button className="back-button" onClick={() => navigate('/')}>
+          <button className="back-button" onClick={() => navigate("/")}>
             ← Back to Characters
           </button>
         </div>
@@ -96,7 +100,7 @@ function CharacterDetail({ currentUser }) {
         {/* User Stats Management */}
         <div className="character-user-stats">
           <h2 className="section-title">Your {character.name} Stats</h2>
-          <CharacterStatsForm 
+          <CharacterStatsForm
             selectedCharacter={character}
             currentUser={currentUser}
             compactMode={true}
@@ -123,7 +127,7 @@ function CharacterDetail({ currentUser }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CharacterDetail
+export default CharacterDetail;
