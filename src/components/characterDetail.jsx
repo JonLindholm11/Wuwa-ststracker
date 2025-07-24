@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import charactersData from '../data/wuwave_characters.json'
 import CharacterStatsForm from './CharacterStatsForm'
 import './CharacterDetail.css'
@@ -7,6 +7,7 @@ import './CharacterDetail.css'
 function CharacterDetail({ currentUser }) {
   const { characterId } = useParams()
   const [character, setCharacter] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Find the character based on the ID from the URL
@@ -53,6 +54,9 @@ function CharacterDetail({ currentUser }) {
         <div className="character-info">
           <h1 className="character-title">{character.name}</h1>
           <div className="character-weapon-type">{character.weapon}</div>
+          <button className="back-button" onClick={() => navigate('/')}>
+            ← Back to Characters
+          </button>
         </div>
       </div>
 

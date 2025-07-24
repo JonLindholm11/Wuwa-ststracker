@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './UserAuth.css';
 
 const UserAuth = ({ onUserChange }) => {
@@ -9,8 +9,14 @@ const UserAuth = ({ onUserChange }) => {
     username: ''
   });
   const [recentUsers, setRecentUsers] = useState([]);
+  
+  // Use ref to track if we've already loaded the initial user
+  const hasLoadedInitialUser = useRef(false);
 
   useEffect(() => {
+    // Only run this once when component mounts
+    if (hasLoadedInitialUser.current) return;
+    
     // Load recent users from localStorage
     const saved = localStorage.getItem('wuwa-recent-users');
     if (saved) {
@@ -33,7 +39,9 @@ const UserAuth = ({ onUserChange }) => {
         console.error('Error loading current user:', e);
       }
     }
-  }, [onUserChange]);
+    
+    hasLoadedInitialUser.current = true;
+  }, []); // FIXED: Remove onUserChange from dependencies
 
   const saveRecentUser = (user) => {
     const updated = [user, ...recentUsers.filter(u => u.userId !== user.userId)].slice(0, 5);
@@ -81,10 +89,11 @@ const UserAuth = ({ onUserChange }) => {
     onUserChange(updatedUser);
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [name]: value
     }));
   };
 
@@ -149,9 +158,10 @@ const UserAuth = ({ onUserChange }) => {
             <label htmlFor="userId">User ID:</label>
             <input
               id="userId"
+              name="userId"
               type="text"
               value={formData.userId}
-              onChange={(e) => handleInputChange('userId', e.target.value)}
+              onChange={handleInputChange}
               placeholder="Enter your user ID"
               className="form-input"
             />
@@ -161,9 +171,10 @@ const UserAuth = ({ onUserChange }) => {
             <label htmlFor="username">Username:</label>
             <input
               id="username"
+              name="username"
               type="text"
               value={formData.username}
-              onChange={(e) => handleInputChange('username', e.target.value)}
+              onChange={handleInputChange}
               placeholder="Enter your username"
               className="form-input"
             />
