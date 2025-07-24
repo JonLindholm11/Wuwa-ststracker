@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import CharacterButtons from './components/characterButtons'
@@ -10,15 +10,16 @@ import UserAuth from './components/UserAuth'
 function UserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
 
-  const handleUserChange = (user) => {
+  // FIXED: Use useCallback to prevent function recreation
+  const handleUserChange = useCallback((user) => {
     setCurrentUser(user)
     console.log('User changed:', user)
-  }
+  }, [])
 
   return (
     <div>
       {/* User Auth appears on every page */}
-      <UserAuth onUserChange={handleUserChange} currentUser={currentUser} />
+      <UserAuth onUserChange={handleUserChange} />
       {/* Pass currentUser to all child components */}
       {children({ currentUser })}
     </div>
@@ -26,9 +27,9 @@ function UserProvider({ children }) {
 }
 
 function HomePage({ currentUser }) {
-  const handleCharacterSelection = (character) => {
+  const handleCharacterSelection = useCallback((character) => {
     console.log('Character selected from component:', character.name)
-  }
+  }, [])
 
   return (
     <div>
